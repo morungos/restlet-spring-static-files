@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	                    http://www.springframework.org/schema/beans/spring-beans.xsd
+	                    http://www.springframework.org/schema/util
+	                    http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<bean id="demoComponent" class="org.restlet.ext.spring.SpringComponent">
+		<property name="defaultTarget" ref="demoApplication" />
+	</bean>
+
+	<bean id="demoComponentChildContext" class="org.restlet.Context"> 
+		<lookup-method name="createChildContext" bean="demoComponent.context" /> 
+	</bean>
+	
+	<bean id="demoApplication" class="com.morungos.restlet.application.DemoApplication">
+		<property name="inboundRoot" ref="router" />
+	</bean>
+
+	<!-- Define the router -->
+	<bean name="router" class="org.restlet.ext.spring.SpringRouter">
+		<constructor-arg ref="demoComponentChildContext" />
+		<property name="attachments">
+	        <map>
+ 	            <entry key="/" value-ref="staticsDirectory" />
+	        </map>
+	    </property>
+	</bean>
+	
+	<bean id="staticsDirectory" class="com.morungos.restlet.ext.DirectoryFactoryBean">
+		<property name="component" ref="demoComponent" />
+	</bean>
+
+</beans>

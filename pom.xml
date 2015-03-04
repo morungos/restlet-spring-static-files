@@ -10,6 +10,8 @@
 		<restlet.version>2.3.1</restlet.version>
 		<spring.version>3.1.4.RELEASE</spring.version>
 		<slf4j.version>1.7.7</slf4j.version>
+		<hsqldb.version>2.3.2</hsqldb.version>
+		<querydsl.version>3.6.1</querydsl.version>
 	</properties>
 
 	<dependencies>
@@ -92,14 +94,13 @@
 				<configuration>
 					<war>${project.build.directory}/${project.build.finalName}.war</war>
 					<webApp>
-						<contextPath>/tracker-java-restlet</contextPath>
+						<contextPath>/demo</contextPath>
 					</webApp>
 					<scanIntervalSeconds>10</scanIntervalSeconds>
 					<webXml>src/main/webapp/WEB-INF/web.xml</webXml>
 					<jettyXml>src/main/etc/jetty.xml</jettyXml>
 				</configuration>
 			</plugin>
-
 		</plugins>
 
 		<pluginManagement>
@@ -122,19 +123,6 @@
 					<configuration>
 						<lifecycleMappingMetadata>
 							<pluginExecutions>
-								<pluginExecution>
-									<pluginExecutionFilter>
-										<groupId>org.codehaus.mojo</groupId>
-										<artifactId>sql-maven-plugin</artifactId>
-										<versionRange>[1.0.0,)</versionRange>
-										<goals>
-											<goal>execute</goal>
-										</goals>
-									</pluginExecutionFilter>
-									<action>
-										<ignore />
-									</action>
-								</pluginExecution>
 								<pluginExecution>
 									<pluginExecutionFilter>
 										<groupId>org.mortbay.jetty</groupId>
