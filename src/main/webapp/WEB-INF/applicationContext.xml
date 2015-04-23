@@ -28,7 +28,6 @@
  	            <entry key="/statics" value-ref="staticsDirectory" />
 	        </map>
 	    </property>
-	    <property name="defaultAttachment" ref="staticsRedirector" />
 	</bean>
 	
 	<bean id="staticsRedirector" class="com.morungos.restlet.ext.CustomRedirector">
@@ -39,7 +38,7 @@
 	
 	<bean id="staticsDirectory" class="com.morungos.restlet.ext.DirectoryFactoryBean">
 		<property name="component" ref="demoComponent" />
-		<property name="resourceRoot" value="file:./src/main/webapp" />
+		<property name="resourceRoot" value="file:./src/main/webapp/statics" />
 	</bean>
 
 </beans>
